@@ -1,0 +1,88 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+
+int main()
+{
+    map<int, int> homid; 
+    map<int, int>::iterator it;
+    cout << "Write amount of houses on the street: ";
+    int amount;
+    cin >> amount;
+    cout << endl;
+    string command;
+
+    for (int i = 1; i <= amount; i++)
+    {
+        cout << "How many people lives in the house id:" << i << " : ";
+        int people;
+        cin >> people;
+        homid[i] = people;
+    };
+
+    while (true)
+    {
+        cout << "command: ";
+        cin >> command; cout << endl;
+
+        if (command == "0" || command == "0 ")
+        {
+            int id;
+            cout << "Write id of the house: ";
+            cin >> id;
+            it = homid.find(id);
+            if (it == homid.end())
+            {
+                cout << endl;
+                cout << "There is no house with id:" << id << endl;
+            }
+            else
+            {
+                cout << endl;
+                cout << "There is house with id: " << id << endl;
+                cout << homid[id] << " people lives there" << endl;
+            }
+        }
+        else if (command == "1" || command == "1 ")
+        {
+            int id;
+            cout << "Write houses id that you want ot delete: ";
+            cin >> id;
+            it = homid.find(id);
+            if (it == homid.end())
+            {
+                cout << "error: unknown id" << endl;
+            }
+            else
+            {
+                homid.erase(id);
+                cout << "House is successfully deleted!" << endl;
+            };
+        }
+        else if (command == "2" || command == "2 ")
+        {
+            int id;
+            cout << "Type new id of a house: ";
+            cin >> id; cout << endl;
+            it = homid.find(id);
+            if (it == homid.end())
+            {
+                int people;
+                cout << "How many people will live there: ";
+                cin >> people; cout << endl;
+                homid[id] = people;
+                cout << "House successfully created!" << endl;
+            }
+            else
+            {
+                cout << "There is alredy house with id: " << id << endl;
+            };
+        }
+        else
+        {
+            cout << "error: unknown command" << endl;
+        };
+    };
+
+}
