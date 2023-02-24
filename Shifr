@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string encrypt(string message, int key) {
+	string cipher = "";
+	for (char c : message) {
+		if (c >= 'A' && c <= 'Z') {
+			cipher += (char)(((c - 'A') + key) % 26 + 'A');
+		}
+		else if (c >= 'a' && c <= 'z') {
+			cipher += (char)(((c - 'a') + key) % 26 + 'a');
+		}
+		else {
+			cipher += c;
+		}
+	}
+	return cipher;
+}
+
+int main() {
+	int k1 = 13, k2 = 6, k3 = 28;
+
+	string name = "Artyom";
+	string surname = "Nikishin";
+	string patronymic = "Andreewich";
+
+	string encrypted_name = encrypt(name, k1);
+	cout << "Encrypted name: " << encrypted_name << endl;
+
+	string encrypted_surname = encrypt(surname, k2);
+	cout << "Encrypted surname: " << encrypted_surname << endl;
+
+	string encrypted_patronymic = encrypt(patronymic, k3);
+	cout << "Encrypted patronymic: " << encrypted_patronymic << endl;
+
+	return 0;
+}
